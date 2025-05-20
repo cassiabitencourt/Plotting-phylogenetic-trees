@@ -1,0 +1,87 @@
+
+RAxML-NG v. 1.2.0-dev released on 19.10.2023 by The Exelixis Lab.
+Developed by: Alexey M. Kozlov and Alexandros Stamatakis.
+Contributors: Diego Darriba, Tomas Flouri, Benoit Morel, Sarah Lutteropp, Ben Bettisworth, Julia Haag, Anastasis Togkousidis.
+Latest version: https://github.com/amkozlov/raxml-ng
+Questions/problems/suggestions? Please visit: https://groups.google.com/forum/#!forum/raxml
+
+System: AMD EPYC 7543 32-Core Processor, 64 cores, 4019 GB RAM
+
+RAxML-NG was called at 06-Dec-2024 13:19:09 as follows:
+
+/home/cbitenco/scratch/apps/raxml-ng-dev/bin/raxml-ng --evaluate --msa /mnt/shared/scratch/cbitenco/private/Projects/Apocys/PAFTOL_1KP_NIF-CB/ASTRAL_for_RAxML-bl/dataset2_diamond/Concatenated_Alignment_all_diam.phy --model GTR+G+F --tree SpeciesTree_PxrrRooted_IQTrees_wastral_s0.tre --prefix BrLe_SpeciesTree_PxrrRooted_IQTrees_wastral_s0.tre --brlen scaled
+
+Analysis options:
+  run mode: Evaluate tree likelihood
+  start tree(s): user
+  random seed: 1733491149
+  tip-inner: OFF
+  pattern compression: ON
+  per-rate scalers: OFF
+  site repeats: ON
+  logLH epsilon: general: 10.000000, brlen-triplet: 1000.000000
+  branch lengths: proportional (ML estimate, algorithm: NR-FAST)
+  SIMD kernels: AVX2
+  parallelization: coarse-grained (auto), PTHREADS (auto)
+
+[00:00:02] Reading alignment from file: /mnt/shared/scratch/cbitenco/private/Projects/Apocys/PAFTOL_1KP_NIF-CB/ASTRAL_for_RAxML-bl/dataset2_diamond/Concatenated_Alignment_all_diam.phy
+[00:00:06] Loaded alignment with 299 taxa and 228178 sites
+
+WARNING: Fully undetermined columns found: 3
+
+NOTE: Reduced alignment (with duplicates and gap-only sites/taxa removed) 
+NOTE: was saved to: /mnt/shared/scratch/cbitenco/private/Projects/Apocys/PAFTOL_1KP_NIF-CB/ASTRAL_for_RAxML-bl/dataset2_diamond/all_iqtree_AAtoDNA/BrLe_SpeciesTree_PxrrRooted_IQTrees_wastral_s0.tre.raxml.reduced.phy
+
+Alignment comprises 1 partitions and 189565 patterns
+
+Partition 0: noname
+Model: GTR+FC+G4m
+Alignment sites / patterns: 228175 / 189565
+Gaps: 17.87 %
+Invariant sites: 26.74 %
+
+
+NOTE: Binary MSA file created: BrLe_SpeciesTree_PxrrRooted_IQTrees_wastral_s0.tre.raxml.rba
+
+Parallelization scheme autoconfig: 1 worker(s) x 64 thread(s)
+
+[00:00:23] Loading user starting tree(s) from: SpeciesTree_PxrrRooted_IQTrees_wastral_s0.tre
+Parallel reduction/worker buffer size: 1 KB  / 0 KB
+
+[00:00:23] Data distribution: max. partitions/sites/weight per thread: 1 / 2962 / 47392
+[00:00:24] Data distribution: max. searches per worker: 1
+
+Evaluating 1 trees
+
+[00:00:25] Tree #1, initial LogLikelihood: -8421223.904578
+
+[00:00:28 -8421223.904578] Initial branch length optimization
+[04:12:08 -7191699.620052] Model parameter optimization (eps = 10.000000)
+
+[06:18:42] Tree #1, final logLikelihood: -6956472.211121
+
+
+Optimized model parameters:
+
+   Partition 0: noname
+   Rate heterogeneity: GAMMA (4 cats, mean),  alpha: 0.596925 (ML),  weights&rates: (0.250000,0.052474) (0.250000,0.310559) (0.250000,0.879742) (0.250000,2.757225) 
+   Base frequencies (empirical): 0.287441 0.182188 0.248247 0.282124 
+   Substitution rates (ML): 1.502112 3.626930 1.185687 1.373659 4.909789 1.000000 
+
+
+Final LogLikelihood: -6956472.211121
+
+AIC score: 13914152.422243 / AICc score: 13914155.633738 / BIC score: 13920396.494610
+Free parameters (model + branch lengths): 604
+
+Best ML tree saved to: /mnt/shared/scratch/cbitenco/private/Projects/Apocys/PAFTOL_1KP_NIF-CB/ASTRAL_for_RAxML-bl/dataset2_diamond/all_iqtree_AAtoDNA/BrLe_SpeciesTree_PxrrRooted_IQTrees_wastral_s0.tre.raxml.bestTree
+Optimized model saved to: /mnt/shared/scratch/cbitenco/private/Projects/Apocys/PAFTOL_1KP_NIF-CB/ASTRAL_for_RAxML-bl/dataset2_diamond/all_iqtree_AAtoDNA/BrLe_SpeciesTree_PxrrRooted_IQTrees_wastral_s0.tre.raxml.bestModel
+
+Execution log saved to: /mnt/shared/scratch/cbitenco/private/Projects/Apocys/PAFTOL_1KP_NIF-CB/ASTRAL_for_RAxML-bl/dataset2_diamond/all_iqtree_AAtoDNA/BrLe_SpeciesTree_PxrrRooted_IQTrees_wastral_s0.tre.raxml.log
+
+Analysis started: 06-Dec-2024 13:19:09 / finished: 06-Dec-2024 19:37:52
+
+Elapsed time: 22723.410 seconds
+
+Consumed energy: 1613.935 Wh (= 8 km in an electric car, or 40 km with an e-scooter!)
+

@@ -1,0 +1,87 @@
+
+RAxML-NG v. 1.2.0-dev released on 19.10.2023 by The Exelixis Lab.
+Developed by: Alexey M. Kozlov and Alexandros Stamatakis.
+Contributors: Diego Darriba, Tomas Flouri, Benoit Morel, Sarah Lutteropp, Ben Bettisworth, Julia Haag, Anastasis Togkousidis.
+Latest version: https://github.com/amkozlov/raxml-ng
+Questions/problems/suggestions? Please visit: https://groups.google.com/forum/#!forum/raxml
+
+System: Intel(R) Xeon(R) Silver 4216 CPU @ 2.10GHz, 32 cores, 187 GB RAM
+
+RAxML-NG was called at 06-Dec-2024 13:29:06 as follows:
+
+/home/cbitenco/scratch/apps/raxml-ng-dev/bin/raxml-ng --evaluate --msa /mnt/shared/scratch/cbitenco/private/Projects/Apocys/PAFTOL_1KP_NIF-CB/ASTRAL_for_RAxML-bl/dataset2_diamond/Concatenated_Alignment_all_diam.phy --model GTR+G+F --tree SpeciesTree_PxrrRooted_raxml_allebg_wastral.s0.full.tre --prefix BrLe_SpeciesTree_PxrrRooted_raxml_allebg_wastral.s0.full.tre --brlen scaled
+
+Analysis options:
+  run mode: Evaluate tree likelihood
+  start tree(s): user
+  random seed: 1733491746
+  tip-inner: OFF
+  pattern compression: ON
+  per-rate scalers: OFF
+  site repeats: ON
+  logLH epsilon: general: 10.000000, brlen-triplet: 1000.000000
+  branch lengths: proportional (ML estimate, algorithm: NR-FAST)
+  SIMD kernels: AVX2
+  parallelization: coarse-grained (auto), PTHREADS (auto)
+
+[00:00:04] Reading alignment from file: /mnt/shared/scratch/cbitenco/private/Projects/Apocys/PAFTOL_1KP_NIF-CB/ASTRAL_for_RAxML-bl/dataset2_diamond/Concatenated_Alignment_all_diam.phy
+[00:00:11] Loaded alignment with 299 taxa and 228178 sites
+
+WARNING: Fully undetermined columns found: 3
+
+NOTE: Reduced alignment (with duplicates and gap-only sites/taxa removed) 
+NOTE: was saved to: /mnt/shared/scratch/cbitenco/private/Projects/Apocys/PAFTOL_1KP_NIF-CB/ASTRAL_for_RAxML-bl/dataset2_diamond/all_raxml_AAtoDNA/BrLe_SpeciesTree_PxrrRooted_raxml_allebg_wastral.s0.full.tre.raxml.reduced.phy
+
+Alignment comprises 1 partitions and 189565 patterns
+
+Partition 0: noname
+Model: GTR+FC+G4m
+Alignment sites / patterns: 228175 / 189565
+Gaps: 17.87 %
+Invariant sites: 26.74 %
+
+
+NOTE: Binary MSA file created: BrLe_SpeciesTree_PxrrRooted_raxml_allebg_wastral.s0.full.tre.raxml.rba
+
+Parallelization scheme autoconfig: 1 worker(s) x 32 thread(s)
+
+[00:00:40] Loading user starting tree(s) from: SpeciesTree_PxrrRooted_raxml_allebg_wastral.s0.full.tre
+Parallel reduction/worker buffer size: 1 KB  / 0 KB
+
+[00:00:41] Data distribution: max. partitions/sites/weight per thread: 1 / 5924 / 94784
+[00:00:41] Data distribution: max. searches per worker: 1
+
+Evaluating 1 trees
+
+[00:00:42] Tree #1, initial LogLikelihood: -8417753.085093
+
+[00:00:46 -8417753.085093] Initial branch length optimization
+[01:51:20 -7191023.562139] Model parameter optimization (eps = 10.000000)
+
+[02:50:53] Tree #1, final logLikelihood: -6955871.746969
+
+
+Optimized model parameters:
+
+   Partition 0: noname
+   Rate heterogeneity: GAMMA (4 cats, mean),  alpha: 0.597114 (ML),  weights&rates: (0.250000,0.052513) (0.250000,0.310664) (0.250000,0.879840) (0.250000,2.756983) 
+   Base frequencies (empirical): 0.287441 0.182188 0.248247 0.282124 
+   Substitution rates (ML): 1.502268 3.628772 1.185890 1.374452 4.910289 1.000000 
+
+
+Final LogLikelihood: -6955871.746969
+
+AIC score: 13912951.493938 / AICc score: 13912954.705433 / BIC score: 13919195.566305
+Free parameters (model + branch lengths): 604
+
+Best ML tree saved to: /mnt/shared/scratch/cbitenco/private/Projects/Apocys/PAFTOL_1KP_NIF-CB/ASTRAL_for_RAxML-bl/dataset2_diamond/all_raxml_AAtoDNA/BrLe_SpeciesTree_PxrrRooted_raxml_allebg_wastral.s0.full.tre.raxml.bestTree
+Optimized model saved to: /mnt/shared/scratch/cbitenco/private/Projects/Apocys/PAFTOL_1KP_NIF-CB/ASTRAL_for_RAxML-bl/dataset2_diamond/all_raxml_AAtoDNA/BrLe_SpeciesTree_PxrrRooted_raxml_allebg_wastral.s0.full.tre.raxml.bestModel
+
+Execution log saved to: /mnt/shared/scratch/cbitenco/private/Projects/Apocys/PAFTOL_1KP_NIF-CB/ASTRAL_for_RAxML-bl/dataset2_diamond/all_raxml_AAtoDNA/BrLe_SpeciesTree_PxrrRooted_raxml_allebg_wastral.s0.full.tre.raxml.log
+
+Analysis started: 06-Dec-2024 13:29:06 / finished: 06-Dec-2024 16:20:00
+
+Elapsed time: 10254.159 seconds
+
+Consumed energy: 322.276 Wh (= 2 km in an electric car, or 8 km with an e-scooter!)
+
