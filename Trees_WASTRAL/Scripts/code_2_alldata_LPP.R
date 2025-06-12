@@ -8,17 +8,19 @@
 
 # --- Load libraries ---
 library(ggtree)
+library(treeio)
 library(ape)
 library(ggplot2)
 library(gridExtra)
+library(ggimage)
 library(RColorBrewer)
 library(paletteer)  # For custom palettes
 
 # --- Define taxon groups ---
 # Define rogue taxa
-rogue_taxa <- c("Secamonoideae_notribe_nosubtribe_Goniostemma_acuminatum_PAFTOL025379",
-                "Asclepiadoideae_Asclepiadeae_Gonolobinae_Macroscepis_multiflora_PAFTOL031788",
-                "Asclepiadoideae_Asclepiadeae_Cynanchinae_Cynanchum_laeve_PAFTOL031815") 
+rogue_taxa <- c("rauvolfioids_Alstonieae_nosubtribe_Alstonia_macrophylla_PAFTOL004113",
+				        "Secamonoideae_notribe_nosubtribe_Goniostemma_acuminatum_PAFTOL025379",
+				        "Asclepiadoideae_Asclepiadeae_Metastelmatinae_Metastelma_parviflorum_CB83") 
 
 # Define outgroups
 outgroups_taxa <- c("Gelsemiaceae_Gelsemieae_Gelsemium_elegans_SRR12009649",
@@ -42,8 +44,7 @@ outgroups_taxa <- c("Gelsemiaceae_Gelsemieae_Gelsemium_elegans_SRR12009649",
                     "Rubiaceae_Schizocoleeae_Schizocolea_linderi_PAFTOL005887")
 
 # Define rauvolfioids
-rauvolfioids_taxa <- c("rauvolfioids_Alstonieae_nosubtribe_Alstonia_macrophylla_PAFTOL004113",
-                       "rauvolfioids_Alstonieae_nosubtribe_Alstonia_scholaris_PAFTOL006553",
+rauvolfioids_taxa <- c("rauvolfioids_Alstonieae_nosubtribe_Alstonia_scholaris_PAFTOL006553",
                        "rauvolfioids_Alstonieae_nosubtribe_Alstonia_spectabilis_PAFTOL007872",
                        "rauvolfioids_Alyxieae_Alyxiinae_Alyxia_buxifolia_PAFTOL004100",
                        "rauvolfioids_Alyxieae_Alyxiinae_Lepinia_solomonensis_PAFTOL006601",
@@ -54,7 +55,7 @@ rauvolfioids_taxa <- c("rauvolfioids_Alstonieae_nosubtribe_Alstonia_macrophylla_
                        "rauvolfioids_Alyxieae_Condylocarpinae_Plectaneia_thouarsii_PAFTOL031781",
                        "rauvolfioids_Amsonieae_nosubtribe_Amsonia_hubrichtii_PAFTOL005220",
                        "rauvolfioids_Aspidospermateae_nosubtribe_Aspidosperma_cylindrocarpon_PAFTOL004040",
-                       "rauvolfioids_Aspidospermateae_nosubtribe_eissospermum_argenteum_PAFTOL025219",
+                       "rauvolfioids_Aspidospermateae_nosubtribe_Geissospermum_argenteum_PAFTOL025219",
                        "rauvolfioids_Aspidospermateae_nosubtribe_Haplophyton_cimicidum_PAFTOL031732",
                        "rauvolfioids_Aspidospermateae_nosubtribe_Microplumeria_anomala_PAFTOL031736",
                        "rauvolfioids_Aspidospermateae_nosubtribe_Strempeliopsis_strempelioides_PAFTOL025289",
@@ -135,6 +136,7 @@ apocynoids_taxa <- c("apocynoids_Apocyneae_Amphineuriinae_Sindechites_henryi_PAF
                      "apocynoids_Baisseeae_nosubtribe_Oncinotis_tenuiloba_PAFTOL031812",
                      "apocynoids_EOM_Echitinae_Asketanthera_picardae_PAFTOL025329",
                      "apocynoids_EOM_Echitinae_Echites_umbellatus_PAFTOL004048",
+                     "apocynoids_EOM_Prestoniinae_Prestonia_bahiensis_PAFTOL031788",
                      "apocynoids_EOM_Echitinae_Thenardia_galeottiana_PAFTOL031814",
                      "apocynoids_EOM_Laubertiinae_Hylaea_arborescens_PAFTOL025493",
                      "apocynoids_EOM_Laubertiinae_Laubertia_contorta_PAFTOL031706",
@@ -222,8 +224,9 @@ Asclepiadoideae_taxa <- c("Asclepiadoideae_Asclepiadeae_Asclepiadinae_Asclepias_
                           "Asclepiadoideae_Asclepiadeae_Asclepiadinae_Xysmalobium_undulatum_PAFTOL031746",  
                           "Asclepiadoideae_Asclepiadeae_Astephaninae_Microloma_sagittatum_PAFTOL031770",  
                           "Asclepiadoideae_Asclepiadeae_Astephaninae_Oncinema_lineare_PAFTOL031774",  
-                          "Asclepiadoideae_Asclepiadeae_Cynanchinae_Cynanchum_gracillimum_PAFTOL025271",  
-                          "Asclepiadoideae_Asclepiadeae_Cynanchinae_Decanema_bojerianum_PAFTOL031789",  
+                          "Asclepiadoideae_Asclepiadeae_Cynanchinae_Cynanchum_gracillimum_PAFTOL025271",
+                          "Asclepiadoideae_Asclepiadeae_Gonolobinae_Chthamalia_producta_PAFTOL031815",
+                          "Asclepiadoideae_Asclepiadeae_Cynanchinae_Cynanchum_luteifluens_PAFTOL031789",  
                           "Asclepiadoideae_Asclepiadeae_Cynanchinae_Schizostephanus_alatus_PAFTOL031787",  
                           "Asclepiadoideae_Asclepiadeae_Gonolobinae_Anemotrochus_eggersii_PAFTOL031699",  
                           "Asclepiadoideae_Asclepiadeae_Gonolobinae_Chloropetalum_denticulatum_PAFTOL031729",  
@@ -256,7 +259,6 @@ Asclepiadoideae_taxa <- c("Asclepiadoideae_Asclepiadeae_Asclepiadinae_Asclepias_
                           "Asclepiadoideae_Asclepiadeae_Metastelmatinae_Hemipogon_acerosus_CB453",
                           "Asclepiadoideae_Asclepiadeae_Metastelmatinae_Metastelma_ditassoides_CB82",
                           "Asclepiadoideae_Asclepiadeae_Metastelmatinae_Metastelma_harley_CB10",
-                          "Asclepiadoideae_Asclepiadeae_Metastelmatinae_Metastelma_parviflorum_CB83",
                           "Asclepiadoideae_Asclepiadeae_Metastelmatinae_Minaria_acerosa_CB411",
                           "Asclepiadoideae_Asclepiadeae_Metastelmatinae_Minaria_cordata_CB198",
                           "Asclepiadoideae_Asclepiadeae_Metastelmatinae_Minaria_decussata_CB205",
@@ -360,7 +362,7 @@ assign_tip_colors <- function(tips) {
   pal <- as.character(paletteer::paletteer_d("rcartocolor::Bold")[1:7])  # Use only the 7 defined
   vec <- rep(NA, length(tips))
   names(vec) <- tips
-  vec[tips %in% rogue_taxa] <- "red"
+  vec[tips %in% rogue_taxa] <- "black"
   vec[tips %in% outgroups_taxa] <- "darkgray"
   vec[tips %in% rauvolfioids_taxa] <- pal[1]
   vec[tips %in% apocynoids_taxa] <- pal[2]
@@ -386,7 +388,7 @@ plot_tree_with_ppl <- function(AS_tree, title) {
   
   base <- ggtree(phylo, ladderize = TRUE, branch.length = "none") +
     geom_tree(color = "darkgray") +  # All branches black
-    geom_tiplab(aes(label = label, color = label), size = 3.0, hjust = 0) +
+    geom_tiplab(aes(label = label, color = label), size = 2.5, hjust = 0) +
     xlim_tree(70) +
     scale_color_manual(values = tip_colors, guide = "none") +
     ggtitle(title)
@@ -397,21 +399,24 @@ plot_tree_with_ppl <- function(AS_tree, title) {
 }
 
 # --- Load data and trees ---
-data <- read.csv("/Users/c.bitencourt/Documents/manuscripts/phylogenomics_Apocynaceae/Trees_WASTRAL/Data/names_dt1.csv")
+data <- read.csv("Data/names_dt1.csv")
 
 rename_tree <- function(tree_path) {
   tr <- read.astral(tree_path)
   rename_taxa(tr, data, key = 1, value = 2)
 }
 
-AS_all_raxml_ppl <- rename_tree("/Users/c.bitencourt/Documents/manuscripts/phylogenomics_Apocynaceae/Trees_WASTRAL/Data/dataset2_diamond/all_raxml_AAtoDNA/SpeciesTree_PxrrRooted_raxml_allebg.tre")
-AS_nha_raxml_ppl <- rename_tree("/Users/c.bitencourt/Documents/manuscripts/phylogenomics_Apocynaceae/Trees_WASTRAL/Data/dataset2_diamond/nha_raxml_AAtoDNA/SpeciesTree_PxrrRooted_raxml_nohard.tre")
+AS_all_raxml_ppl <- rename_tree("Data/dataset2_diamond/all_raxml_AAtoDNA/SpeciesTree_PxrrRooted_raxml_allebg.tre")
+AS_nha_raxml_ppl <- rename_tree("Data/dataset2_diamond/nha_raxml_AAtoDNA/SpeciesTree_PxrrRooted_raxml_nohard.tre")
+
+treeio::write.tree(as.phylo(AS_all_raxml_ppl), file = "Results/AS_all_raxml_ppl.tre")
+treeio::write.tree(as.phylo(AS_nha_raxml_ppl), file = "Results/AS_all_nha_ppl.tre")
 
 # --- Plot trees with Q pie charts and tip coloring ---
-p_all_raxml_ppl <- plot_tree_with_ppl(AS_all_raxml_ppl, "All genes RAxML (n=332)")
-p_nha_raxml_ppl <- plot_tree_with_ppl(AS_nha_raxml_ppl, "Only good genes RAxML (n=212)")
+p_all_raxml_ppl <- plot_tree_with_ppl(AS_all_raxml_ppl, "All genes (n=332)")
+p_nha_raxml_ppl <- plot_tree_with_ppl(AS_nha_raxml_ppl, "Only signal-genes (n=212)")
 
 # --- Export PDF ---
-pdf("/Users/c.bitencourt/Documents/manuscripts/phylogenomics_Apocynaceae/Trees_WASTRAL/Results/Supplement_2_PPLpies.pdf", 20, 50)
+pdf("Results/Supplement_2_PPLpies.pdf", 20, 50)
 grid.arrange(p_all_raxml_ppl, p_nha_raxml_ppl, nrow = 1)
 dev.off()
