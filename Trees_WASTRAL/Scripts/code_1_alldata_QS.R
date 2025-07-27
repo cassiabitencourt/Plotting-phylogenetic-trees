@@ -1,12 +1,4 @@
-# --- Code written by Cassia Bitencourt but also include function provided by Sidonie Bellot ---
-# This script is implemented for plotting the summary trees resulting from wASTRAL, and it is written into five steps. [1] First we created vectors which will translate into a block of colours later. 
-# This means that with these blocks we will be able to provide different colours for the terminals, in this case, I am splitting them by grades (rauvolfioids and apocynoids), subfamilies (Periplocoideae, 
-# Secamonoideae and Asclepiadoideae). Plus the outgroups and rogue taxa. [2] In this step, we provide functions to define the colours per vector, and another function developed by Sidonie Bellot to calculate 
-# the quartet score and a final function to set up the plot of the phylogenetic tree. The end of this script is for loading the data. The tree that came from the summary method and a CSV file including two 
-# columns the current names of the terminals and the new names you would like to use. Here we include subfamily, tribe, subtribe, genus, species and project codification or accession number. Finally, we plot 
-# the tree and save it as a PDF.
-
-# --- Load libraries ---
+# Load libraries
 library(ggtree)
 library(treeio)
 library(ape)
@@ -14,12 +6,12 @@ library(ggplot2)
 library(gridExtra)
 library(ggimage)
 library(RColorBrewer)
-library(paletteer)  # For custom palettes
+library(paletteer)
 
-# --- 1 Define vectors of taxon groups ---
+# 1 Define vectors of taxon groups
 # Define rogue taxa
 rogue_taxa <- c("rauvolfioids_Alstonieae_nosubtribe_Alstonia_macrophylla_PAFTOL004113",
-				        "Secamonoideae_notribe_nosubtribe_Goniostemma_acuminatum_PAFTOL025379",
+				        "Secamonoideae_notribe_nosubtribe_Secamone_kunstleri_PAFTOL025379",
 				        "Asclepiadoideae_Asclepiadeae_Metastelmatinae_Metastelma_parviflorum_CB83") 
 
 # Define outgroups
@@ -356,7 +348,7 @@ Asclepiadoideae_taxa <- c("Asclepiadoideae_Asclepiadeae_Asclepiadinae_Asclepias_
                           "Asclepiadoideae_Marsdenieae_nosubtribe_Treutlera_insignis_PAFTOL025399",
                           "Asclepiadoideae_Marsdenieae_nosubtribe_Wattakaka_volubilis_PAFTOL031745")
 
-# --- 2 Useful functions ---
+# 2 Useful functions
 assign_tip_colors <- function(tips) {
   pal <- as.character(paletteer::paletteer_d("rcartocolor::Bold")[1:7])  # Use only the 7 defined
   vec <- rep(NA, length(tips))
@@ -371,7 +363,7 @@ assign_tip_colors <- function(tips) {
   return(vec)
 }
 
-# --- Function QS_calc written by Sidonie Bellot ---
+# Function QS_calc written by Sidonie Bellot
 QS_calc <- function(AS_A) {
   Q1 <- as.numeric(AS_A@data$q1) * 100
   Q <- as.data.frame(Q1)
@@ -397,7 +389,7 @@ plot_tree_with_qpies <- function(AS_tree, title) {
   return(inset(base, pies, width = 0.06, height = 0.06))
 }
 
-# --- 3 Load data: terminal names and phylogenetic trees ---
+# 3 Load data: terminal names and phylogenetic trees
 data <- read.csv("Data/names_dt1.csv")
 
 rename_tree <- function(tree_path) {
@@ -408,11 +400,11 @@ rename_tree <- function(tree_path) {
 AS_all_raxml_dt2 <- rename_tree("Data/dataset2_diamond/all_raxml_AAtoDNA/SpeciesTree_PxrrRooted_raxml_allebg.tre")
 AS_nha_raxml_dt2 <- rename_tree("Data/dataset2_diamond/nha_raxml_AAtoDNA/SpeciesTree_PxrrRooted_raxml_nohard.tre")
 
-# --- 4 Plot trees with Q pie charts and tip coloring ---
+# 4 Plot trees with Q pie charts and tip coloring
 p_all_raxml_qs <- plot_tree_with_qpies(AS_all_raxml_dt2, "All genes (n=332)")
-p_nha_raxml_qs <- plot_tree_with_qpies(AS_nha_raxml_dt2, "Only signal-genes (n=212)")
+p_nha_raxml_qs <- plot_tree_with_qpies(AS_nha_raxml_dt2, "Signal-bearing genes (n=212)")
 
-# --- 5 Export PDF ---
+# 5 Export PDF
 pdf("Results/Supplement_2_QSpies.pdf", 20, 50)
 grid.arrange(p_all_raxml_qs, p_nha_raxml_qs, nrow = 1)
 dev.off()
